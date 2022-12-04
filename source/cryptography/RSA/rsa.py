@@ -1,6 +1,4 @@
-import cryptography.message as message
-from cryptography.transformations import *
-from cryptography.utils import *
+import source.cryptography.message as message
 
 
 def generate_keypair(bits):

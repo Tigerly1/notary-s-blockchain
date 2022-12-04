@@ -1,8 +1,6 @@
 import base64
 from hashlib import sha256 as hasher
 
-from cryptography.transformations import *
-
 __all__ = []
 
 class Message:

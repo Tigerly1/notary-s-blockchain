@@ -1,6 +1,15 @@
+import hashlib
 import random
 import secrets
 from math import gcd
+
+
+def calculate_hash(data) -> str:
+    if type(data) == str:
+        data = bytearray(data, "utf-8")
+    h = hashlib.sha256()
+    h.update(data)
+    return h.hexdigest()
 
 
 def miller_rabin(n, runs=40):
