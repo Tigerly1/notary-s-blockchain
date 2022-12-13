@@ -1,4 +1,4 @@
-import source.cryptography.message as message
+import source.blockchain.cryptography.message as message
 
 
 def generate_keypair(bits):
