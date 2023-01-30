@@ -176,14 +176,14 @@ def test_given_no_transaction_when_get_transaction_fees_then_0_is_returned(netwo
     pow = ProofOfWork(network)
 
     transaction_fees = pow.get_transaction_fees(transactions)
-
+    print(transactions_fees)
     assert transaction_fees == 0
 
 
 def test_given_transactions_when_get_transaction_fees_then_transaction_fees_are_returned(
         transactions, network):
     pow = ProofOfWork(network)
-
+    print(transaction_fee)
     transaction_fees = pow.get_transaction_fees(transactions)
 
     assert transaction_fees == 0.5
@@ -194,7 +194,7 @@ def test_given_transaction_fees_when_get_coinbase_transaction_then_coinbase_tran
     pow = ProofOfWork(network)
 
     coinbase_transaction = pow.get_coinbase_transaction(transaction_fee)
-
+    print(coinbase_transaction)
     assert coinbase_transaction == {
         'inputs': [],
         'outputs': [{
