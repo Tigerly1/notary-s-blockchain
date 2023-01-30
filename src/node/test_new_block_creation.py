@@ -176,7 +176,7 @@ def test_given_no_transaction_when_get_transaction_fees_then_0_is_returned(netwo
     pow = ProofOfWork(network)
 
     transaction_fees = pow.get_transaction_fees(transactions)
-    print(transactions_fees)
+    print(transaction_fees)
     assert transaction_fees == 0
 
 

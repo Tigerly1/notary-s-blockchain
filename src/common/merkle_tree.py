@@ -1,6 +1,6 @@
 import json
 import math
-
+from abc import ABC, abstractmethod
 from src.common.utils import calculate_hash
 
 
@@ -19,18 +19,36 @@ def is_power_of_2(number_of_leaves: int) -> bool:
     return math.log2(number_of_leaves).is_integer()
 
 
+
+class FillSetStrategy(ABC):
+    @abstractmethod
+    def fill_set(self, list_of_nodes: list):
+        pass
+
+
+class PowerOfTwoFillStrategy(FillSetStrategy):
+    def fill_set(self, list_of_nodes: list):
+        return list_of_nodes
+
+
+class NonPowerOfTwoFillStrategy(FillSetStrategy):
+    def fill_set(self, list_of_nodes: list):
+        current_number_of_leaves = len(list_of_nodes)
+        total_number_of_leaves = 2**compute_tree_depth(current_number_of_leaves)
+        if current_number_of_leaves % 2 == 0:
+            for i in range(current_number_of_leaves, total_number_of_leaves, 2):
+                list_of_nodes = list_of_nodes + [list_of_nodes[-2], list_of_nodes[-1]]
+        else:
+            for i in range(current_number_of_leaves, total_number_of_leaves):
+                list_of_nodes.append(list_of_nodes[-1])
+        return list_of_nodes
+
+
 def fill_set(list_of_nodes: list):
     current_number_of_leaves = len(list_of_nodes)
-    if is_power_of_2(current_number_of_leaves):
-        return list_of_nodes
-    total_number_of_leaves = 2**compute_tree_depth(current_number_of_leaves)
-    if current_number_of_leaves % 2 == 0:
-        for i in range(current_number_of_leaves, total_number_of_leaves, 2):
-            list_of_nodes = list_of_nodes + [list_of_nodes[-2], list_of_nodes[-1]]
-    else:
-        for i in range(current_number_of_leaves, total_number_of_leaves):
-            list_of_nodes.append(list_of_nodes[-1])
-    return list_of_nodes
+    strategy = NonPowerOfTwoFillStrategy()
+    if is_power_of_2(current_number_of_leaves): strategy=PowerOfTwoFillStrategy()
+    return strategy.fill_set(list_of_nodes)
 
 
 def build_merkle_tree(node_data: [str]) -> Node:

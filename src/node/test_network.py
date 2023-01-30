@@ -2,8 +2,8 @@ from unittest.mock import patch
 
 import pytest
 
-from src.common.network import Network
-from src.common.node import Node
+from common.network import Network
+from common.node import Node
 
 
 class TestNetwork:

@@ -6,14 +6,14 @@ from src.common.initialize_default_blockchain import initialize_default_blockcha
 
 
 class Network:
-
+    _shared_state = {}
     KNOWN_NODES_FILE = '../doc/known_nodes.json'
     FIRST_KNOWN_NODE_HOSTNAME = "127.0.0.1:5000"
 
     def __init__(self, node: Node):
-        self.node = node
-        self.initialize_known_nodes_file()
-
+        if not hasattr(self, 'node'):
+            self.node = node
+            self.initialize_known_nodes_file()
     def initialize_known_nodes_file(self):
         print("Initializing known nodes file")
         initial_known_node = Node(hostname=self.FIRST_KNOWN_NODE_HOSTNAME)

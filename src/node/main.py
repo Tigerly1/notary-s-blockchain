@@ -82,7 +82,6 @@ def known_node_request():
 
 
 def main():
-    global network
     my_node = Node(MY_HOSTNAME)
     network = Network(my_node)
     network.join_network()
