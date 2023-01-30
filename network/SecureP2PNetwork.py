@@ -244,8 +244,10 @@ class SecureNode(Node):
             self.debug_print("Signing the message:")
             self.debug_print("Message to be hashed: " + message)
             self.debug_print("Hash of the message: " + message_hash.hexdigest())
-
             signer = PKCS1_v1_5_Signature.new(self.rsa_key)
+            self.debug_print("Signing the message:" + str(self.rsa_key))
+
+
             signature = b64encode(signer.sign(message_hash))
 
             return signature.decode('utf-8')
@@ -354,7 +356,7 @@ class SecureNode(Node):
     #######################################################
 
     def key_pair_generate(self):
-        self.rsa_key = RSA.generate(4096)
+        self.rsa_key = RSA.generate(1024)
 
     def key_pair_save(self, file_name, password):
         try:

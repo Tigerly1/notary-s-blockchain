@@ -1,9 +1,8 @@
-from network.SecureP2PNetwork import SecureNode
-
 import sys
 import time
 sys.path.insert(0, '..')
 
+from network.SecureP2PNetwork import SecureNode
 
 node1 = SecureNode("localhost", 10001)
 node2 = SecureNode("localhost", 10002)
